@@ -33,7 +33,6 @@ function dividePhoto() {
                 canvas: require('canvas')
             }    
         }, function() {
-            console.log("hiii");
             resolve('the source image has been sliced into 9 sections!');
         });
     })

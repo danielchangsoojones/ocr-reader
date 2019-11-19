@@ -4,11 +4,14 @@ const vision = require('@google-cloud/vision');
 
 exports.runReader = async function runReader(box_identifier) {
     // Creates a client
+    
+    runOCR(1, "random");
+}
+
+async function runOCR(fileNum, box_identifier) {
     const client = new vision.ImageAnnotatorClient();
 
-    // const dividePhoto = require('./dividePhoto');
-
-    const fileName = 'ocr/section-1.png';
+    const fileName = "ocr/photoSections/section-" + fileNum + ".png";
 
     // Performs text detection on the local file
     const [result] = await client.textDetection(fileName);
@@ -24,7 +27,7 @@ function getSurgeMultiplier(detections, box_identifier) {
         var description = detection.description;
         var isMultiplierString = checkIfIsMultiplier(description);
         if (isMultiplierString) {
-            var multiplier = parseMultiplierString(previousDetection.description);
+            var multiplier = parseMultiplierString(detection.description);
             if (!isNaN(multiplier)) {
                 saveRidesharePrice(box_identifier, multiplier);
             }
