@@ -6,13 +6,13 @@ exports.runReader = async function runReader(box_identifier) {
     // Creates a client
     const client = new vision.ImageAnnotatorClient();
 
-    const fileName = '/Users/danieljones/Documents/ocr-reader/screenshot.png';
+    const fileName = '/Users/danieljones/Documents/ocr-reader/ocr/section-1.png';
 
     // Performs text detection on the local file
     const [result] = await client.textDetection(fileName);
     const detections = result.textAnnotations;
-    // detections.forEach(text => console.log(text));
-    getSurgeMultiplier(detections, box_identifier);
+    detections.forEach(text => console.log(text));
+    // getSurgeMultiplier(detections, box_identifier);
 }
 
 function getSurgeMultiplier(detections, box_identifier) {
